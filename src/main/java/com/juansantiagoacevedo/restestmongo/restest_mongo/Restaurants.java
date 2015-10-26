@@ -29,8 +29,7 @@ public class Restaurants {
     	MongoClient mongoClient = new MongoClient();
 		MongoDatabase db = mongoClient.getDatabase("test");
 		MongoCollection<Document> collection = db.getCollection("restaurants");
-		//FindIterable<Document> iterable = collection.find(new Document("grades.grade", new Document("$eq", "C")));
-		FindIterable<Document> iterable = collection.find();
+		FindIterable<Document> iterable = collection.find(new Document("grades.grade", new Document("$eq", "C")));
 		iterable.forEach(new Block<Document>() {
 			@Override
 			public void apply(final Document document) {
