@@ -16,6 +16,7 @@ public class TwitterStreamConsumer {
 	private static final String STREAM_URI = "https://stream.twitter.com/1.1/statuses/filter.json";
 	public static String ultimoTweet;
 	public static int numTweets;
+	public static final String TRACK_PARAM = "alcalde";
 	
 	public static String getLatestTweet() {
 		return ultimoTweet;
@@ -36,12 +37,13 @@ public class TwitterStreamConsumer {
 			Token accessToken = new Token("2334095631-QwupYxwRjThfNx7s4j24Vo28ylS64NFs7LA4Fqh","4XVrQTuvs02XO6WTqhwJz8Pq2P9m4B00JI4X0lVZnafV9");
 			
 			System.out.println("Conectando a Twitter Publico...");
+			System.out.println("Buscando: " + TRACK_PARAM + "...");
 			OAuthRequest request = new OAuthRequest(Verb.POST, STREAM_URI);
 			request.addHeader("version", "HTTP/1.1");
             request.addHeader("host", "stream.twitter.com");
             request.setConnectionKeepAlive(true);
             request.addHeader("user-agent", "Twitter Stream Reader");
-            request.addBodyParameter("track", "postobon"); // Set keywords you'd like to track here
+            request.addBodyParameter("track", TRACK_PARAM); // Set keywords you'd like to track here
             service.signRequest(accessToken, request);
             Response response = request.send();
 
@@ -49,10 +51,24 @@ public class TwitterStreamConsumer {
             BufferedReader reader = new BufferedReader(new InputStreamReader(response.getStream()));
 
             String line;
+            int bueno = 1;
+            int malo = 1;
             while ((line = reader.readLine()) != null) {
-                ultimoTweet = line;
                 numTweets++;
-                //System.out.println(line);
+                if(line.contains("Alcalde") || line.contains("alcalde")) {
+                	if(line.contains("solucion") || line.contains("bueno") || line.contains("mejorar") || line.contains("buen")) {
+                		System.out.println("Buenos - " + bueno + ") " + line);
+                		bueno++;
+                		ultimoTweet = "Bueno - " + line;
+                	} else if(line.contains("malo") || line.contains("terrible") || line.contains("lamentable") || line.contains("fraude") || line.contains("fracaso")) {
+                		System.out.println("Malos - "+ malo + ") " + line);
+                		malo++;
+                		ultimoTweet = "Malo - " + line;
+                	}
+                	if(numTweets%10 == 0) {
+                		System.out.println(numTweets);
+                	}
+                }
             }
 		} catch(Exception e) {
 			
