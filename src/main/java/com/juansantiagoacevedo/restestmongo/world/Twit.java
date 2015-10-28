@@ -23,6 +23,7 @@ public class Twit {
 	public Boolean retweeted;
 	public String lang;
 	public String timestamp_ms;
+	public String categoria;
 	
 	public String getCreated_at() {
 		return created_at;
@@ -149,5 +150,11 @@ public class Twit {
 	}
 	public void setTimestamp_ms(String timestamp_ms) {
 		this.timestamp_ms = timestamp_ms;
+	}
+	public String getCategoria() {
+		return categoria;
+	}
+	public void setCategoria(String categoria) {
+		this.categoria = categoria;
 	}
 }
