@@ -18,7 +18,7 @@ public class TwitterStreamConsumer {
 	private static final String STREAM_URI = "https://stream.twitter.com/1.1/statuses/filter.json";
 	public static String ultimoTweet;
 	public static int numTweets;
-	public static final String TRACK_PARAM = "nike";
+	public static final String TRACK_PARAM = "luisospinarestr";
 	public TwitAnalyzer analyzer;
 	
 	public static String getLatestTweet() {

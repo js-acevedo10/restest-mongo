@@ -15,17 +15,19 @@ public class TwitAnalyzer {
 		JSONObject income = new JSONObject(line);
 		String text = income.getString("text");
 		
-		String newLine = text.replaceAll("[^\\p{L}\\p{Z}]","");
-		newLine = newLine.replace("á", "a").replace("é", "e").replace("í", "i").replace("ó", "o").replace("ú", "u");
-		newLine = newLine.toLowerCase();
-		String[] words = newLine.split(" ");
+//		String newLine = text.replaceAll("[^\\p{L}\\p{Z}]","");
+//		newLine = newLine.replace("á", "a").replace("é", "e").replace("í", "i").replace("ó", "o").replace("ú", "u");
+//		newLine = newLine.toLowerCase();
+//		String[] words = newLine.split(" ");
 		
 		
-		System.out.print("{");
-		for(String word : words) {
-			System.out.print(word + "-");
-		}
-		System.out.println("}");
+//		System.out.print("{");
+//		for(String word : words) {
+//			System.out.print(word + "-");
+//		}
+//		System.out.println("}");
+		
+		System.out.println(text);
 	}
 
 }

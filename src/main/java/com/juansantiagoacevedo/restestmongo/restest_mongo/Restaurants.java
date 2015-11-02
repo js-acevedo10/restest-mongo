@@ -30,7 +30,7 @@ public class Restaurants {
     @Produces(MediaType.TEXT_HTML)
     public String getIt() throws JSONException { 
     	String r = "";
-    	JSONArray array = new JSONArray();
+    	final JSONArray array = new JSONArray();
     	MongoClient mongoClient = new MongoClient();
 		MongoDatabase db = mongoClient.getDatabase(DB_NAME);
 		MongoCollection<Document> collection = db.getCollection(DB_COLLECTION_NAME);
